@@ -100,6 +100,7 @@ MetHod：POST
     OfficialList(object array)：官方任務列表
       OfficialId(int)：官方任務ID
       OfficialName(string)：任務名稱
+      OfficialDescribe(string)：任務描述
       StartDateTime(string)：任務開始時間
       EndDateTime(string)：任務結束時間
       IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
@@ -108,7 +109,7 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
@@ -128,11 +129,12 @@ MetHod：POST
 傳入JSON：
   OfficialId(int)：官方任務ID
   OfficialName(string)：任務名稱 **不可為空,最長 20 個字
+  OfficialDescribe(string)：任務描述 **最長 200 個字
   StartDateTime(string)：任務起始時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   EndDateTime(string)：任務結束時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
 傳入範例：
-  data={"OfficialId":1,"OfficialName":"海線美食大冒險","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}
+  data={"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}
 ```
 
 ```
