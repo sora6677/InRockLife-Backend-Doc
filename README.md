@@ -13,7 +13,7 @@
 ***
 ## ManagerLogin - 管理員登入
 ```
-URL：api/backend/manager/ManagerLogin.php
+URL：api/inrocklife/backend/manager/ManagerLogin.php
 MetHod：POST
 傳入參數：
   data：JSON
@@ -51,7 +51,7 @@ Header：
 ```
 
 ```
-URL：api/backend/manager/ManagerLogout.php
+URL：api/inrocklife/backend/manager/ManagerLogout.php
 MetHod：GET
 ```
 
@@ -79,7 +79,7 @@ Header：
 ```
 
 ```
-URL：api/backend/task/OfficialList.php
+URL：api/inrocklife/backend/task/OfficialList.php
 MetHod：POST
 傳入參數：
   data：JSON
@@ -122,7 +122,7 @@ Header：
 ```
 
 ```
-URL：api/backend/task/OfficialModify.php
+URL：api/inrocklife/backend/task/OfficialModify.php
 MetHod：POST
 傳入參數：
   data：JSON
