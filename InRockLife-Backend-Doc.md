@@ -153,3 +153,83 @@ MetHod：POST
   {"status":1104,"msg":"無此任務","data":{}}
   {"status":1020,"msg":"名稱或內容長度不符","data":{}}
 ```
+
+## BoxList - 寶箱列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxList.php
+MetHod：GET
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    BoxId(int)：寶箱ID
+    BoxPosition(string)：寶箱定位
+    BoxAddress(string)：寶箱地址
+    BoxCoolDownTime(string)：冷卻時間
+    BoxStartDateTime(string)：出現時間
+    BoxEndDateTime(string)：消失時間
+    PlaceName(string)：地點名稱
+    PlaceImg(string)：地點圖片
+    PlaceDescribe(string)：地點描述
+    BoxContents(object array)：參照 BoxContentSetting API
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+```
+
+## BoxContentSetting - 寶箱內容設定
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxContentSetting.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+傳入範例：
+  data={"OfficialId":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    ContentId(int)：內容ID ** 1:幣,2:拼圖,3:徽章
+    ContentDescribe(string)：內容描述
+    SettingMethodList(object array)：可設定的類型 1:範圍取值 2:設定數值開出機率 3:指定數值均出現,則設定數值有機率開出 4:設定數值未出現,則有機率開出
+      SettingMethod(int)：設定類型
+      SettingDescribe(string)：類型描述
+      SettingFields(string array)：所需欄位
+      SettingFieldsType(string array)：欄位型別
+      SettingFieldsDescribe(string array)：欄位描述
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":[{"ContentId":1,"ContentDescribe":"幣(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}]},{"ContentId":2,"ContentDescribe":"拼圖(機率)","SettingMethodList":[{"SettingMethod":2,"SettingDescribe":"設定數值開出機率","SettingFields":["SettingValues","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["設定數值,以逗號(,)區分","開出機率"]},{"SettingMethod":3,"SettingDescribe":"指定數值均出現,則設定數值有機率開出","SettingFields":["SettingValue","SpecifiedValues","Probability"],"SettingFieldsType":["string","string","int"],"SettingFieldsDescribe":["設定數值","輸入指定數值,以逗號(,)區分","開出機率"]},{"SettingMethod":4,"SettingDescribe":"設定數值未出現,則有機率開出","SettingFields":["SettingValue","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["設定數值","開出機率"]}]},{"ContentId":3,"ContentDescribe":"徽章(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}]}]}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+```
