@@ -9,6 +9,8 @@
 |1001|資料異常|
 |1002|連線異常|
 |1003|令牌失效|
+|1004|未上傳圖檔|
+|1005|上傳圖檔失敗|
 
 ***
 ## ManagerLogin - 管理員登入
@@ -154,44 +156,6 @@ MetHod：POST
   {"status":1020,"msg":"名稱或內容長度不符","data":{}}
 ```
 
-## BoxList - 寶箱列表
-```
-Header：
-  ManagerId(string)：管理員 (唯一碼)
-  AuthToken(string)：身分驗證令牌
-```
-
-```
-URL：api/inrocklife/backend/task/BoxList.php
-MetHod：GET
-```
-
-```
-回傳參數：
-  status(int)：代碼
-  msg(string)：訊息
-  data(object array)：
-    BoxId(int)：寶箱ID
-    BoxPosition(string)：寶箱定位
-    BoxAddress(string)：寶箱地址
-    BoxCoolDownTime(string)：冷卻時間
-    BoxStartDateTime(string)：出現時間
-    BoxEndDateTime(string)：消失時間
-    PlaceName(string)：地點名稱
-    PlaceImg(string)：地點圖片
-    PlaceDescribe(string)：地點描述
-    BoxContents(object array)：參照 BoxContentSetting API
-回傳方式：JSON
-```
-
-```
-成功範例：
-  {"status":200,"msg":"成功","data":{}}
-失敗範例：
-  參考共用錯誤代碼 或
-  {"status":1104,"msg":"無此任務","data":{}}
-```
-
 ## BoxContentSetting - 寶箱內容設定
 ```
 Header：
@@ -232,4 +196,86 @@ MetHod：POST
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
+```
+
+## BoxList - 寶箱列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxList.php
+MetHod：GET
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    BoxId(int)：寶箱ID
+    BoxPosition(string)：寶箱定位
+    BoxAddress(string)：寶箱地址
+    BoxCoolDownTime(string)：冷卻時間
+    BoxStartDateTime(string)：出現時間
+    BoxEndDateTime(string)：消失時間
+    PlaceName(string)：地點名稱
+    PlaceImg(string)：地點圖片
+    PlaceDescribe(string)：地點描述
+    BoxContents(object array)：參照 BoxContentSetting API
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+```
+
+## BoxCreate - 新增寶箱
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxCreate.php
+MetHod：POST
+傳入參數：
+  data：JSON
+  PlaceImg：FILE 地點圖片 (一般圖檔上傳)
+傳入JSON：
+  OfficialId(int)：官方任務ID
+  BoxPosition(string)：寶箱定位
+  BoxAddress(string)：寶箱地址
+  BoxCoolDownTime(string)：冷卻時間
+  BoxStartDateTime(string)：出現時間
+  BoxEndDateTime(string)：消失時間
+  PlaceName(string)：地點名稱  
+  PlaceDescribe(string)：地點描述
+  BoxContents(object array)：參照 BoxContentSetting API
+傳入範例：
+  data={"OfficialId":1,"BoxPosition":"123,456","BoxAddress":"test","BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+  {"status":1105,"msg":"寶箱內容缺失","data":{}}
 ```
