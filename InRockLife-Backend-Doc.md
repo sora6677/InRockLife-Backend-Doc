@@ -277,3 +277,79 @@ MetHod：POST
   {"status":1104,"msg":"無此任務","data":{}}
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
 ```
+
+## BoxModify - 修改寶箱
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxModify.php
+MetHod：POST
+傳入參數：
+  data：JSON
+  PlaceImg：FILE 地點圖片 (一般圖檔上傳) **非必填,要更換圖片在上傳
+傳入JSON：
+  BoxId(int)：寶箱ID
+  BoxPosition(string)：寶箱定位
+  BoxCoolDownTime(string)：冷卻時間
+  BoxStartDateTime(string)：出現時間
+  BoxEndDateTime(string)：消失時間
+  PlaceName(string)：地點名稱  
+  PlaceDescribe(string)：地點描述
+  BoxContents(object array)：參照 BoxContentSetting API
+傳入範例：
+  data={"BoxId":1,"BoxPosition":"987,10","BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1105,"msg":"寶箱內容缺失","data":{}}
+  {"status":1106,"msg":"查無此寶箱","data":{}}
+```
+
+## BoxDelete - 刪除寶箱
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxDelete.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  BoxId(int)：寶箱ID
+傳入範例：
+  data={"BoxId":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼
+```
