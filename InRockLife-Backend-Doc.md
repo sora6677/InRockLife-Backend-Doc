@@ -106,12 +106,16 @@ MetHod：POST
       StartDateTime(string)：任務開始時間
       EndDateTime(string)：任務結束時間
       IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
+      PublicProbability(int)：目前設定的全域機率, 不可超過總機率
+      TotalProbability(int)：總機率 = 拼圖總數
+      MinPeople(int)：最少人數
+      MaxPeople(int)：最大人數
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":60,"TotalProbability":60,"MinPeople":1,"MaxPeople":8}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
@@ -135,8 +139,11 @@ MetHod：POST
   StartDateTime(string)：任務起始時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   EndDateTime(string)：任務結束時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
+  PublicProbability(int)：目前設定的全域機率, 不可超過總機率
+  MinPeople(int)：最少人數
+  MaxPeople(int)：最大人數
 傳入範例：
-  data={"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1}
+  data={"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":60,"MinPeople":1,"MaxPeople":8}
 ```
 
 ```
@@ -154,6 +161,7 @@ MetHod：POST
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
   {"status":1020,"msg":"名稱或內容長度不符","data":{}}
+  {"status":1107,"msg":"超過拼圖總數","data":{}}
 ```
 
 ## BoxContentSetting - 寶箱內容設定
