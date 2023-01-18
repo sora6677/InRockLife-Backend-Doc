@@ -221,7 +221,7 @@ MetHod：POST
 傳入JSON：
   OfficialId(int)：官方任務ID
 傳入範例：
-  data={"BoxId":1}
+  data={"OfficialId":1}
 ```
 
 ```
