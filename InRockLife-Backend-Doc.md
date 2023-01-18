@@ -231,7 +231,7 @@ MetHod：POST
   data(object array)：
     BoxId(int)：寶箱ID
     BoxPosition(string)：寶箱定位
-    BoxCoolDownTime(string)：冷卻時間
+    BoxCoolDownTime(string)：冷卻時間 (分鐘)
     BoxStartDateTime(string)：出現時間
     BoxEndDateTime(string)：消失時間
     PlaceName(string)：地點名稱
