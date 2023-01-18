@@ -237,7 +237,8 @@ MetHod：GET
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{}}
+  {"status":200,"msg":"成功","data":{"BoxList":[{"BoxId":1,"BoxPosition":"999,10","BoxCoolDownTime":180,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceImg":"http:\/\/img.inrocklife.net\/images\/place\/2023\/01\/16\/image_list\/683701162505592023.png","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]},{"BoxId":3,"BoxPosition":"999,10","BoxCoolDownTime":180,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceImg":"http:\/\/img.inrocklife.net\/images\/place\/2023\/01\/16\/image_list\/714401162706492023.png","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}]}}
+  
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
