@@ -262,7 +262,6 @@ URL：api/inrocklife/backend/task/BoxCreate.php
 MetHod：POST
 傳入參數：
   data：JSON
-  PlaceImg：FILE 地點圖片 (一般圖檔上傳)
 傳入JSON：
   OfficialId(int)：官方任務ID
   BoxPosition(string)：寶箱定位
@@ -333,6 +332,37 @@ MetHod：POST
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
+  {"status":1106,"msg":"查無此寶箱","data":{}}
+```
+
+## BoxModifyImage - 修改寶箱圖片
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+  BoxId(int)：寶箱ID
+```
+
+```
+URL：api/inrocklife/backend/task/BoxModifyImage.php
+Content-Type：multipart/form-data
+傳入參數：
+  PlaceImg：FILE 地點圖片 (一般圖檔上傳)
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
   {"status":1106,"msg":"查無此寶箱","data":{}}
 ```
 
