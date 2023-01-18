@@ -304,7 +304,6 @@ URL：api/inrocklife/backend/task/BoxModify.php
 MetHod：POST
 傳入參數：
   data：JSON
-  PlaceImg：FILE 地點圖片 (一般圖檔上傳) **非必填,要更換圖片在上傳
 傳入JSON：
   BoxId(int)：寶箱ID
   BoxPosition(string)：寶箱定位
