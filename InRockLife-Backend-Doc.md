@@ -215,7 +215,13 @@ Header：
 
 ```
 URL：api/inrocklife/backend/task/BoxList.php
-MetHod：GET
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+傳入範例：
+  data={"BoxId":1}
 ```
 
 ```
