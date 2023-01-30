@@ -353,6 +353,158 @@ MetHod：POST
   {"status":1104,"msg":"無此任務","data":{}}
 ```
 
+## BoxTemplateList - 寶箱樣板列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxTemplateList.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+傳入範例：
+  data={"OfficialId":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TemplateId(int)：寶箱樣板ID
+    BoxCoolDownTime(int)：冷卻時間 (分鐘)
+    BoxStartDateTime(string)：出現時間
+    BoxEndDateTime(string)：消失時間
+    BoxContents(object array)：參照 BoxContentSetting API
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"BoxTemplateList":[{"TemplateId":1,"BoxCoolDownTime":300,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}]}}
+  
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+```
+
+## BoxTemplateCreate - 建立寶箱樣板
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxTemplateCreate.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+  BoxCoolDownTime(int)：冷卻時間
+  BoxStartDateTime(string)：出現時間
+  BoxEndDateTime(string)：消失時間
+  BoxContents(object array)：參照 BoxContentSetting API
+傳入範例：
+  data={"OfficialId":1,"BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-02-20 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10 },{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10 },{"SettingMethod":4,"SettingValue":20,"Probability":10 }]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]}]}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+  {"status":1105,"msg":"寶箱內容缺失","data":{}}
+```
+
+## BoxTemplateUpdate - 修改寶箱樣板
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxTemplateUpdate.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+  TemplateId(int)：寶箱樣板ID
+  BoxCoolDownTime(string)：冷卻時間
+  BoxStartDateTime(string)：出現時間
+  BoxEndDateTime(string)：消失時間
+  BoxContents(object array)：參照 BoxContentSetting API
+傳入範例：
+  data={"OfficialId":1,"TemplateId":1,"BoxCoolDownTime":10,"BoxStartDateTime":"2023-01-20 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]}]}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1105,"msg":"寶箱內容缺失","data":{}}
+```
+
+## BoxTemplateDelete - 刪除寶箱樣板
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/BoxTemplateDelete.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  OfficialId(int)：官方任務ID
+  TemplateId(int)：寶箱樣板ID
+傳入範例：
+  data={"OfficialId":1,"TemplateId":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼
+```
+
 ## BoxList - 寶箱列表
 ```
 Header：
