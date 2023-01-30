@@ -12,7 +12,7 @@
 |1004|未上傳圖檔|
 |1005|上傳圖檔失敗|
 
-********
+***
 ## ManagerLogin - 管理員登入
 ```
 URL：api/inrocklife/backend/manager/ManagerLogin.php
@@ -73,6 +73,152 @@ MetHod：GET
 ```
 
 ***
+
+## GetAnnouncementList - 公告列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/information/GetAnnouncementList.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  RowCount(int)：取得筆數 範圍: 10 ~ 100
+  GetPage(int)：第幾頁 範圍: > 1
+傳入範例：
+  data={"RowCount":10,"GetPage":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TotalPage(int)：總頁數
+    TotalRows(int)：總筆數
+    AnnouncementList(object array)：公告列表
+      AnnouncementId(int)：公告ID
+      AnnouncementUrl(string)：公告檔案網址
+      AnnouncementContent(string)：公告內容
+      IsDisplay(int)：app 是否顯示 0:不顯示 1:顯示
+回傳方式：JSON
+```
+
+```
+成功範例：
+  
+失敗範例：
+  參考共用錯誤代碼
+```
+
+## CreateAnnouncement - 建立公告
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/information/CreateAnnouncement.php
+MetHod：POST
+傳入參數：
+  data：JSON
+  AnnouncementFile(FILE)： 公告圖片或影片, 上傳檔案
+傳入JSON：
+  AnnouncementContent(string)：公告內容
+  IsDisplay(int)：app 是否顯示 0:不顯示 1:顯示
+傳入範例：
+  data={"AnnouncementContent":"tst","IsDisplay":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  
+失敗範例：
+  參考共用錯誤代碼
+```
+
+## UpdateAnnouncement - 更新公告
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/information/UpdateAnnouncement.php
+MetHod：POST
+傳入參數：
+  data：JSON
+  AnnouncementFile(FILE)： 公告圖片或影片, 上傳檔案
+傳入JSON：
+  AnnouncementId(int)：公告ID
+  AnnouncementContent(string)：公告內容
+  IsDisplay(int)：app 是否顯示 0:不顯示 1:顯示
+傳入範例：
+  data={"AnnouncementId":1,"AnnouncementContent":"tst","IsDisplay":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  
+失敗範例：
+  參考共用錯誤代碼
+```
+
+## DeleteAnnouncement - 刪除公告
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/information/DeleteAnnouncement.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  AnnouncementId(int)：公告ID
+傳入範例：
+  data={"AnnouncementId":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  
+失敗範例：
+  參考共用錯誤代碼
+```
+
 ***
 ## OfficialList - 官方任務列表
 ```
