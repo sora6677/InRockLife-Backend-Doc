@@ -243,13 +243,43 @@ MetHod：GET
   msg(string)：訊息
   data(object array)：
     ModeList(object array)：模式列表
-      TaskMode(int)：模式唯一碼
+      TaskMode(int)：任務模式(唯一碼)
       ModeName(string)：模式名稱
 ```
 
 ```
 成功範例：
   {"status":200,"msg":"成功","data":{"ModeList":[{"TaskMode":1,"ModeName":"寶箱模式"}]}}
+失敗範例：
+  參考共用錯誤代碼
+```
+
+## GraphicsList - 圖形列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/GraphicsList.php
+MetHod：GET
+```
+
+```
+回傳方式：JSON
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    ModeList(object array)：模式列表
+      GraphicsId(int)：圖形ID
+      GraphicsName(string)：圖形名稱
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"GraphicsList":[{"GraphicsId":1,"GraphicsName":"美食大冒險圖形A"},{"GraphicsId":2,"GraphicsName":"美食大冒險圖形B"},{"GraphicsId":3,"GraphicsName":"美食大冒險圖形C"}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
