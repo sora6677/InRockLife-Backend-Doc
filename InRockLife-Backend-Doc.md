@@ -331,6 +331,51 @@ MetHod：POST
   參考共用錯誤代碼
 ```
 
+## OfficialCreate - 官方任務建立
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/OfficialCreate.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  TaskMode(int)：任務模式，僅創建時可選 **參照 GetModeList - 可選模式列表
+  OfficialName(string)：任務名稱 **不可為空,最長 20 個字
+  OfficialDescribe(string)：任務描述 **最長 200 個字
+  StartDateTime(string)：任務起始時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
+  EndDateTime(string)：任務結束時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
+  IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
+  PublicProbability(int)：目前設定的全域機率, 不可超過總機率
+  MinPeople(int)：最少人數
+  MaxPeople(int)：最大人數
+  GraphicsList(int array)：綁定圖形ID列表，圖形可複選 **參照 GraphicsList - 圖形列表
+傳入範例：
+  data={"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"寶箱活動","StartDateTime":"2023-02-09 00:00:00","EndDateTime":"2023-02-28 00:00:00","IsDisplay":1,"PublicProbability":60,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼 或
+  {"status":1104,"msg":"無此任務","data":{}}
+  {"status":1020,"msg":"名稱或內容長度不符","data":{}}
+  {"status":1107,"msg":"超過拼圖總數","data":{}}
+```
+
 ## OfficialModify - 官方任務修改
 ```
 Header：
@@ -353,8 +398,9 @@ MetHod：POST
   PublicProbability(int)：目前設定的全域機率, 不可超過總機率
   MinPeople(int)：最少人數
   MaxPeople(int)：最大人數
+  GraphicsList(int array)：綁定圖形ID列表，圖形可複選 **參照 GraphicsList - 圖形列表
 傳入範例：
-  data={"OfficialId":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":60,"MinPeople":1,"MaxPeople":8}
+  data={"OfficialId":1,"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":40,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
 ```
 
 ```
