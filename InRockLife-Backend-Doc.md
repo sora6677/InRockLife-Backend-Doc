@@ -318,8 +318,7 @@ MetHod：POST
       StartDateTime(string)：任務開始時間
       EndDateTime(string)：任務結束時間
       IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
-      PublicProbability(int)：目前設定的全域機率, 不可超過總機率
-      TotalProbability(int)：總機率 = 拼圖總數
+      TotalPuzzles(int)：綁定的拼圖總數
       MinPeople(int)：最少人數
       MaxPeople(int)：最大人數
       GraphicsList(int array)：綁定圖形ID列表，圖形可複選 **參照 GraphicsList - 圖形列表
@@ -328,7 +327,7 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","ModeName":"寶箱模式","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":40,"TotalProbability":60,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":1,"OfficialList":[{"OfficialId":1,"OfficialName":"海線美食大冒險","ModeName":"寶箱模式","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"TotalPuzzles":60,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
@@ -352,12 +351,11 @@ MetHod：POST
   StartDateTime(string)：任務起始時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   EndDateTime(string)：任務結束時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
-  PublicProbability(int)：目前設定的全域機率, 不可超過總機率
   MinPeople(int)：最少人數
   MaxPeople(int)：最大人數
   GraphicsList(int array)：綁定圖形ID列表，圖形可複選 **參照 GraphicsList - 圖形列表
 傳入範例：
-  data={"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"寶箱活動","StartDateTime":"2023-02-09 00:00:00","EndDateTime":"2023-02-28 00:00:00","IsDisplay":1,"PublicProbability":60,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
+  data={"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"寶箱活動","StartDateTime":"2023-02-09 00:00:00","EndDateTime":"2023-02-28 00:00:00","IsDisplay":1,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
 ```
 
 ```
@@ -397,12 +395,11 @@ MetHod：POST
   StartDateTime(string)：任務起始時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   EndDateTime(string)：任務結束時間 **格式: yyyy-mm-dd hh:ii:ss (24小時制)
   IsDisplay(int)：APP是否顯示 0:不顯示 1:顯示
-  PublicProbability(int)：目前設定的全域機率, 不可超過總機率
   MinPeople(int)：最少人數
   MaxPeople(int)：最大人數
   GraphicsList(int array)：綁定圖形ID列表，圖形可複選 **參照 GraphicsList - 圖形列表
 傳入範例：
-  data={"OfficialId":1,"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"PublicProbability":40,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
+  data={"OfficialId":1,"TaskMode":1,"OfficialName":"海線美食大冒險","OfficialDescribe":"描述","StartDateTime":"2023-01-12 00:00:00","EndDateTime":"2023-02-01 00:00:00","IsDisplay":1,"MinPeople":1,"MaxPeople":3,"GraphicsList":[1,2,3]}
 ```
 
 ```
