@@ -242,7 +242,7 @@ MetHod：GET
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-    TypeList(object array)：類型列表 ***類型與前台 APP 配合，僅有 6 項
+    TypeList(object array)：類型列表 ***類型與前台 APP 配合，目前僅有 6 項
       TaskType(int)：類型ID
       TaskName(string)：類型名稱
       IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
@@ -255,7 +255,6 @@ MetHod：GET
   參考共用錯誤代碼
 ```
 
-***
 ## TaskTypeInsert - 新增任務類型
 ```
 Header：
@@ -265,30 +264,34 @@ Header：
 
 ```
 URL：api/inrocklife/backend/task/TaskTypeInsert.php
-MetHod：GET
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  TypeList(object array)：
+      TaskType(int)：類型ID
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+傳入範例：
+  data={"TaskType":2,"TaskName":"揪一起","IsDisplay":1}
 ```
 
 ```
-回傳方式：JSON
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-    TypeList(object array)：
-      TaskType(int)：類型ID
-      TaskName(string)：類型名稱
-      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+回傳方式：JSON
 ```
 
 ```
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  參考共用錯誤代碼
+  參考共用錯誤代碼 或
   {"status":1111,"msg":"類型已存在","data":{}}
 ```
 
-***
 ## TaskTypeModify - 修改任務類型
 ```
 Header：
@@ -298,26 +301,31 @@ Header：
 
 ```
 URL：api/inrocklife/backend/task/TaskTypeModify.php
-MetHod：GET
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  TypeList(object array)：
+      TaskType(int)：類型ID **此欄為識別用，不可更改
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+傳入範例：
+  data={"TaskType":2,"TaskName":"揪一起","IsDisplay":0}
 ```
 
 ```
-回傳方式：JSON
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-    TypeList(object array)：
-      TaskType(int)：類型ID **此欄為識別用，不可更改
-      TaskName(string)：類型名稱
-      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+回傳方式：JSON
 ```
 
 ```
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  參考共用錯誤代碼
+  參考共用錯誤代碼 或
   {"status":1110,"msg":"無此類型","data":{}}
 ```
 
@@ -331,24 +339,31 @@ Header：
 
 ```
 URL：api/inrocklife/backend/task/TaskTypeDelete.php
-MetHod：GET
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  TypeList(object array)：
+      TaskType(int)：類型ID **此欄為識別用，不可更改
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+傳入範例：
+  data={"TaskType":7}
 ```
 
 ```
-回傳方式：JSON
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-    TypeList(object array)：
-      TaskType(int)：類型ID
+回傳方式：JSON
 ```
 
 ```
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  參考共用錯誤代碼
+  參考共用錯誤代碼 或
   {"status":1110,"msg":"無此類型","data":{}}
 ```
 
