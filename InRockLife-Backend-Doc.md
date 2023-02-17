@@ -224,6 +224,134 @@ MetHod：POST
 ```
 
 ***
+## TaskTypeList - 任務類型列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/TaskTypeList.php
+MetHod：GET
+```
+
+```
+回傳方式：JSON
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TypeList(object array)：類型列表 ***類型與前台 APP 配合，僅有 6 項
+      TaskType(int)：類型ID
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"TypeList":[{"TaskType":1,"TaskName":"揪運動","IsDisplay":0},{"TaskType":2,"TaskName":"揪一起","IsDisplay":1},{"TaskType":3,"TaskName":"揪活動","IsDisplay":0},{"TaskType":4,"TaskName":"揪吃飯","IsDisplay":0},{"TaskType":5,"TaskName":"揪玩樂","IsDisplay":0},{"TaskType":6,"TaskName":"揪蝦拚","IsDisplay":0}]}}
+失敗範例：
+  參考共用錯誤代碼
+```
+
+***
+## TaskTypeInsert - 新增任務類型
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/TaskTypeInsert.php
+MetHod：GET
+```
+
+```
+回傳方式：JSON
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TypeList(object array)：
+      TaskType(int)：類型ID
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼
+  {"status":1111,"msg":"類型已存在","data":{}}
+```
+
+***
+## TaskTypeModify - 修改任務類型
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/TaskTypeModify.php
+MetHod：GET
+```
+
+```
+回傳方式：JSON
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TypeList(object array)：
+      TaskType(int)：類型ID **此欄為識別用，不可更改
+      TaskName(string)：類型名稱
+      IsDisplay(int)：前台 APP 是否顯示 0:不顯示 1:顯示
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼
+  {"status":1110,"msg":"無此類型","data":{}}
+```
+
+***
+## TaskTypeDelete - 刪除任務類型
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/task/TaskTypeDelete.php
+MetHod：GET
+```
+
+```
+回傳方式：JSON
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TypeList(object array)：
+      TaskType(int)：類型ID
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  參考共用錯誤代碼
+  {"status":1110,"msg":"無此類型","data":{}}
+```
+
 ## GetModeList - 可選模式列表
 ```
 Header：
