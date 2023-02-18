@@ -224,6 +224,52 @@ MetHod：POST
 ```
 
 ***
+## TaskBadgeGrandTotalList - 任務徽章累計列表
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+URL：api/inrocklife/backend/statistical/TaskBadgeGrandTotalList.php
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  SpecifiedQuantity(int)：指定數量 **回傳大於等於指定數量的玩家，照最小時間排序
+  OfficialId(int)：官方任務ID
+  RowCount(int)：取得筆數 範圍: 10 ~ 100
+  GetPage(int)：第幾頁 範圍: > 0
+傳入範例：
+  data={"SpecifiedQuantity":20,"OfficialId":1,"RowCount":10,"GetPage":1}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object array)：
+    TotalPage(int)：總頁數
+    TotalRows(int)：總筆數
+    WinList(object array)：中獎名單
+      UserPhone(int)：玩家手機
+      UserNickName(string)：玩家暱稱
+      UserId(int)：玩家ID
+      OriBadgeQuantity(int)：原徽章數量
+      NewBadgeQuantity(int)：新徽章數量
+      CreateTime(string)：建立時間
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":2,"WinList":[{"UserPhone":"0911234524","UserNickName":"test24","UserId":308249510172,"OriBadgeQuantity":10,"NewBadgeQuantity":20,"CreateTime":"2023-02-18 12:44:34"},{"UserPhone":"0911234522","UserNickName":"test22","UserId":797577749225,"OriBadgeQuantity":10,"NewBadgeQuantity":15,"CreateTime":"2023-02-18 12:53:38"}]}}
+失敗範例：
+  參考共用錯誤代碼
+```
+
+***
 ## TaskTypeList - 任務類型列表
 ```
 Header：
