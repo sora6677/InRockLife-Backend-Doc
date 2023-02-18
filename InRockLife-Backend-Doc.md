@@ -287,7 +287,7 @@ MetHod：GET
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
-  data(object array)：
+  data(object)：
     TypeList(object array)：類型列表 ***類型與前台 APP 配合，目前僅有 6 項
       TaskType(int)：類型ID
       TaskName(string)：類型名稱
