@@ -237,7 +237,7 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  SpecifiedQuantity(int)：指定數量 **回傳大於等於指定數量的玩家，照最小時間排序
+  SpecifiedQuantity(int)：達標數量 **回傳大於等於達標數量的玩家，照最小時間排序
   OfficialId(int)：官方任務ID
   RowCount(int)：取得筆數 範圍: 10 ~ 100
   GetPage(int)：第幾頁 範圍: > 0
@@ -256,15 +256,14 @@ MetHod：POST
       UserPhone(int)：玩家手機
       UserNickName(string)：玩家暱稱
       UserId(int)：玩家ID
-      OriBadgeQuantity(int)：原徽章數量
-      NewBadgeQuantity(int)：新徽章數量
-      CreateTime(string)：建立時間
+      NowQuantity(int)：目前徽章總數
+      CreateTime(string)：達標時間
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":2,"WinList":[{"UserPhone":"0911234524","UserNickName":"test24","UserId":308249510172,"OriBadgeQuantity":10,"NewBadgeQuantity":20,"CreateTime":"2023-02-18 12:44:34"},{"UserPhone":"0911234522","UserNickName":"test22","UserId":797577749225,"OriBadgeQuantity":10,"NewBadgeQuantity":15,"CreateTime":"2023-02-18 12:53:38"}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":2,"WinList":[{"UserPhone":"0911234524","UserNickName":"test24","UserId":308249510172,"NowQuantity":35,"CreateTime":"2023-02-18 12:44:34"},{"UserPhone":"0911234522","UserNickName":"test22","UserId":797577749225,"NowQuantity":20,"CreateTime":"2023-02-18 12:53:38"}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
