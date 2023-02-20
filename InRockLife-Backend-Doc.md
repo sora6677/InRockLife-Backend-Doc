@@ -631,20 +631,24 @@ MetHod：POST
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-    ContentId(int)：內容ID ** 1:幣,2:拼圖,3:徽章
-    ContentDescribe(string)：內容描述
-    SettingMethodList(object array)：可設定的類型 1:範圍取值 2:設定數值開出機率 3:指定數值均出現,則設定數值有機率開出 4:設定數值未出現,則有機率開出
-      SettingMethod(int)：設定類型
-      SettingDescribe(string)：類型描述
+    ContentId(int)：獎項ID ** 1:幣,2:拼圖,3:徽章
+    ContentDescribe(string)：獎項描述
+    SettingMethodList(object array)：可設定的方法 1:範圍取值 2:設定數值開出機率 3:指定數值均出現,則設定數值有機率開出 4:設定數值未出現,則有機率開出
+      SettingMethod(int)：設定方法
+      SettingDescribe(string)：方法描述
       SettingFields(string array)：所需欄位
       SettingFieldsType(string array)：欄位型別
       SettingFieldsDescribe(string array)：欄位描述
+    AwardFields(string array)：所需欄位
+    AwardFieldsType(string)：欄位型別
+    AwardFieldsDescribe(string)：欄位描述
+    AwardFieldsComment(string)：欄位註解說明
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":[{"ContentId":1,"ContentDescribe":"幣(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}]},{"ContentId":2,"ContentDescribe":"拼圖(機率)","SettingMethodList":[{"SettingMethod":2,"SettingDescribe":"設定數值開出機率","SettingFields":["SettingValues","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["設定數值,以逗號(,)區分","開出機率"]},{"SettingMethod":3,"SettingDescribe":"指定數值均出現,則設定數值有機率開出","SettingFields":["SettingValue","SpecifiedValues","Probability"],"SettingFieldsType":["string","string","int"],"SettingFieldsDescribe":["設定數值","輸入指定數值,以逗號(,)區分","開出機率"]},{"SettingMethod":4,"SettingDescribe":"設定數值未出現,則有機率開出","SettingFields":["SettingValue","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["設定數值","開出機率"]}]},{"ContentId":3,"ContentDescribe":"徽章(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}]}]}
+  {"status":200,"msg":"成功","data":[{"ContentId":1,"ContentDescribe":"水晶碎片(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}],"AwardFields":["AwardProbability"],"AwardFieldsType":["int"],"AwardFieldsDescribe":["獎項機率"],"AwardFieldsComment":["所有獎項總機率不可超過 100,獎項機率可填0，若都填0表示隨機"]},{"ContentId":2,"ContentDescribe":"拼圖(機率)","SettingMethodList":[{"SettingMethod":2,"SettingDescribe":"設定ID機率","SettingFields":["SettingValues","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["拼圖(ID)*可傳入多個,以逗號(,)區分","開出機率"]},{"SettingMethod":3,"SettingDescribe":"指定的ID均出現,則某ID有機率開出","SettingFields":["SettingValue","SpecifiedValues","Probability"],"SettingFieldsType":["string","string","int"],"SettingFieldsDescribe":["某拼圖(ID)","指定的拼圖(ID)*可傳入多個,以逗號(,)區分","開出機率"]},{"SettingMethod":4,"SettingDescribe":"ID未出現,則依機率開出","SettingFields":["SettingValue","Probability"],"SettingFieldsType":["string","int"],"SettingFieldsDescribe":["拼圖(ID)","開出機率"]}],"AwardFields":["AwardProbability"],"AwardFieldsType":["int"],"AwardFieldsDescribe":["獎項機率"],"AwardFieldsComment":["所有獎項總機率不可超過 100,獎項機率可填0，若都填0表示隨機"]},{"ContentId":3,"ContentDescribe":"徽章(數量)","SettingMethodList":[{"SettingMethod":1,"SettingDescribe":"範圍取值","SettingFields":["MinQuantity","MaxQuantity"],"SettingFieldsType":["int","int"],"SettingFieldsDescribe":["最小數量","最大數量"]}],"AwardFields":["AwardProbability"],"AwardFieldsType":["int"],"AwardFieldsDescribe":["獎項機率"],"AwardFieldsComment":["所有獎項總機率不可超過 100,獎項機率可填0，若都填0表示隨機"]}]}
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
@@ -674,6 +678,7 @@ MetHod：POST
   msg(string)：訊息
   data(object array)：
     TemplateId(int)：寶箱樣板ID
+    TemplateName(string)：樣板名稱
     BoxCoolDownTime(int)：冷卻時間 (分鐘)
     BoxStartDateTime(string)：出現時間
     BoxEndDateTime(string)：消失時間
@@ -683,11 +688,12 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"BoxTemplateList":[{"TemplateId":1,"BoxCoolDownTime":300,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}]}}
+  {"status":200,"msg":"成功","data":{"BoxTemplateList":[{"TemplateId":1,"TemplateName":"樣版名稱1","BoxCoolDownTime":5,"BoxStartDateTime":"2023-02-16 00:00:00","BoxEndDateTime":"2023-02-28 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":10},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10}],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":0}]}]}}
   
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
+  {"status":1112,"msg":"寶箱所有獎項機率加總超過100","data":{}}
 ```
 
 ## BoxTemplateCreate - 建立寶箱樣板
@@ -704,20 +710,21 @@ MetHod：POST
   data：JSON
 傳入JSON：
   OfficialId(int)：官方任務ID
+  TemplateName(string)：樣板名稱
   BoxCoolDownTime(int)：冷卻時間
   BoxStartDateTime(string)：出現時間
   BoxEndDateTime(string)：消失時間
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
-  data={"OfficialId":1,"BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-02-20 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10 },{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10 },{"SettingMethod":4,"SettingValue":20,"Probability":10 }]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]}]}
+  data={"OfficialId":1,"TemplateName":"樣版名稱1","BoxCoolDownTime":5,"BoxStartDateTime":"2023-02-16 00:00:00","BoxEndDateTime":"2023-02-28 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":10},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10 }],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":0}]}
 ```
 
 ```
+回傳方式：JSON
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-回傳方式：JSON
 ```
 
 ```
@@ -727,6 +734,7 @@ MetHod：POST
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
+  {"status":1112,"msg":"寶箱所有獎項機率加總超過100","data":{}}
 ```
 
 ## BoxTemplateUpdate - 修改寶箱樣板
@@ -744,20 +752,21 @@ MetHod：POST
 傳入JSON：
   OfficialId(int)：官方任務ID
   TemplateId(int)：寶箱樣板ID
+  TemplateName(string)：樣板名稱
   BoxCoolDownTime(string)：冷卻時間
   BoxStartDateTime(string)：出現時間
   BoxEndDateTime(string)：消失時間
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
-  data={"OfficialId":1,"TemplateId":1,"BoxCoolDownTime":10,"BoxStartDateTime":"2023-01-20 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }]}]}
+  data={"OfficialId":1,"TemplateId":1,"TemplateName":"樣版名稱11","BoxCoolDownTime":10,"BoxStartDateTime":"2023-02-16 00:00:00","BoxEndDateTime":"2023-02-28 00:00:00","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":20},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":0}]}
 ```
 
 ```
+回傳方式：JSON
 回傳參數：
   status(int)：代碼
   msg(string)：訊息
   data(object array)：
-回傳方式：JSON
 ```
 
 ```
@@ -766,6 +775,7 @@ MetHod：POST
 失敗範例：
   參考共用錯誤代碼 或
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
+  {"status":1112,"msg":"寶箱所有獎項機率加總超過100","data":{}}
 ```
 
 ## BoxTemplateDelete - 刪除寶箱樣板
@@ -839,7 +849,7 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"BoxList":[{"BoxId":1,"BoxPosition":"999,10","BoxCoolDownTime":180,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceImg":"http:\/\/img.inrocklife.net\/images\/place\/2023\/01\/16\/image_list\/683701162505592023.png","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]},{"BoxId":3,"BoxPosition":"999,10","BoxCoolDownTime":180,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceImg":"http:\/\/img.inrocklife.net\/images\/place\/2023\/01\/16\/image_list\/714401162706492023.png","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10},{"SettingMethod":4,"SettingValue":20,"Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}]}}
+  {"status":200,"msg":"成功","data":{"BoxList":[{"BoxId":46,"BoxPosition":"999,10","BoxCoolDownTime":3,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceImg":"","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":5}]}]}}
   
 失敗範例：
   參考共用錯誤代碼 或
@@ -868,7 +878,7 @@ MetHod：POST
   PlaceDescribe(string)：地點描述
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
-  data={"OfficialId":1,"BoxPosition":"123,456","BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}
+  data={"OfficialId":1,"BoxPosition":"123,456","BoxAddress":"test","BoxCoolDownTime":5,"BoxStartDateTime":"2023-02-16 00:00:00","BoxEndDateTime":"2023-02-28 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":0},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10 }],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":0}]}
 ```
 
 ```
@@ -886,6 +896,7 @@ MetHod：POST
   參考共用錯誤代碼 或
   {"status":1104,"msg":"無此任務","data":{}}
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
+  {"status":1112,"msg":"寶箱所有獎項機率加總超過100","data":{}}
 ```
 
 ## BoxModify - 修改寶箱
@@ -910,7 +921,7 @@ MetHod：POST
   PlaceDescribe(string)：地點描述
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
-  data={"BoxId":1,"BoxPosition":"987,10","BoxCoolDownTime":5,"BoxStartDateTime":"2023-01-16 00:00:00","BoxEndDateTime":"2023-01-20 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10},{"SettingMethod":3,"SettingValue":20,"SpecifiedValues":"9,8,7,6","Probability":10}]},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}]}]}
+  data={"BoxId":46,"BoxPosition":"999,10","BoxAddress":"ttt","BoxCoolDownTime":3,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":5}]}
 ```
 
 ```
@@ -928,6 +939,7 @@ MetHod：POST
   參考共用錯誤代碼 或
   {"status":1105,"msg":"寶箱內容缺失","data":{}}
   {"status":1106,"msg":"查無此寶箱","data":{}}
+  {"status":1112,"msg":"寶箱所有獎項機率加總超過100","data":{}}
 ```
 
 ## BoxModifyImage - 修改寶箱圖片
