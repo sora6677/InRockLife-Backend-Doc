@@ -224,7 +224,7 @@ MetHod：POST
 ```
 
 ***
-## TaskBadgeGrandTotalList - 任務徽章累計列表
+## LotteryWinList - 中獎列表
 ```
 Header：
   ManagerId(string)：管理員 (唯一碼)
@@ -232,17 +232,15 @@ Header：
 ```
 
 ```
-URL：api/inrocklife/backend/statistical/TaskBadgeGrandTotalList.php
+URL：api/inrocklife/backend/statistical/LotteryWinList.php
 MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  SpecifiedQuantity(int)：達標數量 **回傳大於等於達標數量的玩家，照最小時間排序
-  OfficialId(int)：官方任務ID
   RowCount(int)：取得筆數 範圍: 10 ~ 100
   GetPage(int)：第幾頁 範圍: > 0
 傳入範例：
-  data={"SpecifiedQuantity":20,"OfficialId":1,"RowCount":10,"GetPage":1}
+  data={"RowCount":10,"GetPage":1}
 ```
 
 ```
@@ -255,15 +253,14 @@ MetHod：POST
     WinList(object array)：中獎名單
       UserPhone(int)：玩家手機
       UserNickName(string)：玩家暱稱
-      UserId(int)：玩家ID
-      NowQuantity(int)：目前徽章總數
-      CreateTime(string)：達標時間
+      PrizeName(string)：獎品名稱
+      PrizeQuota(int)：獎品名額
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":2,"WinList":[{"UserPhone":"0911234524","UserNickName":"test24","UserId":308249510172,"NowQuantity":35,"CreateTime":"2023-02-18 12:44:34"},{"UserPhone":"0911234522","UserNickName":"test22","UserId":797577749225,"NowQuantity":20,"CreateTime":"2023-02-18 12:53:38"}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"TotalRows":2,"WinList":[{"UserPhone":"0911234521","UserNickName":"系浮方","PrizeName":"iPhone 14手機","PrizeQuota":1},{"UserPhone":"0911234521","UserNickName":"系浮方","PrizeName":"浮現祭老帽-黑色","PrizeQuota":1}]}}
 失敗範例：
   參考共用錯誤代碼
 ```
