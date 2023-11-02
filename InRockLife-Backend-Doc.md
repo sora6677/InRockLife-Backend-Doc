@@ -840,6 +840,7 @@ MetHod：POST
     PlaceName(string)：地點名稱
     PlaceImg(string)：地點圖片
     PlaceDescribe(string)：地點描述
+    BuildType(int)：建築類型,參照 https://docs.google.com/spreadsheets/d/1ACg-y_iwpOBTLO5kLnCzrWJte4eKC3h4HKJfv5Y_EHw/edit#gid=1873122037 普通建物的ID
     BoxContents(object array)：參照 BoxContentSetting API
 回傳方式：JSON
 ```
@@ -873,6 +874,7 @@ MetHod：POST
   BoxEndDateTime(string)：消失時間
   PlaceName(string)：地點名稱  
   PlaceDescribe(string)：地點描述
+  BuildType(int)：建築類型,參照 https://docs.google.com/spreadsheets/d/1ACg-y_iwpOBTLO5kLnCzrWJte4eKC3h4HKJfv5Y_EHw/edit#gid=1873122037 普通建物的ID
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
   data={"OfficialId":1,"BoxPosition":"123,456","BoxAddress":"test","BoxCoolDownTime":5,"BoxStartDateTime":"2023-02-16 00:00:00","BoxEndDateTime":"2023-02-28 00:00:00","PlaceName":"地點名稱測試","PlaceDescribe":"地點描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":0},{"ContentId":2,"SettingMethodList":[{"SettingMethod":2,"SettingValues":"9,8,7,6","Probability":10 }],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10}],"AwardProbability":0}]}
@@ -916,6 +918,7 @@ MetHod：POST
   BoxEndDateTime(string)：消失時間
   PlaceName(string)：地點名稱  
   PlaceDescribe(string)：地點描述
+  BuildType(int)：建築類型,參照 https://docs.google.com/spreadsheets/d/1ACg-y_iwpOBTLO5kLnCzrWJte4eKC3h4HKJfv5Y_EHw/edit#gid=1873122037 普通建物的ID
   BoxContents(object array)：參照 BoxContentSetting API
 傳入範例：
   data={"BoxId":46,"BoxPosition":"999,10","BoxAddress":"ttt","BoxCoolDownTime":3,"BoxStartDateTime":"2023-01-17 00:00:00","BoxEndDateTime":"2023-01-21 00:00:00","PlaceName":"名稱測試","PlaceDescribe":"描述測試","BoxContents":[{"ContentId":1,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":2,"MaxQuantity":11}],"AwardProbability":0},{"ContentId":3,"SettingMethodList":[{"SettingMethod":1,"MinQuantity":1,"MaxQuantity":10 }],"AwardProbability":5}]}
